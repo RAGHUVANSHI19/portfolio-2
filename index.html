@@ -1043,7 +1043,135 @@
     </svg>
   </button>
 
-  <!-- Main JavaScript File -->
+  <!-- ====================================================================
+       ASK DIVYANSH AI — FLOATING CHATBOT COMPONENT
+       ==================================================================== -->
+  <!-- Floating Trigger Button -->
+  <button 
+    type="button" 
+    class="chatbot-trigger" 
+    id="chatbot-trigger" 
+    aria-label="Open Ask Divyansh AI Chatbot"
+    aria-expanded="false"
+    aria-controls="chatbot-window"
+  >
+    <div class="chatbot-trigger-icon">
+      <span class="chatbot-trigger-beacon" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.245-1.272A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
+      </svg>
+    </div>
+    <span class="chatbot-trigger-text">Ask Divyansh AI</span>
+  </button>
+
+  <!-- Chatbot Window -->
+  <aside 
+    class="chatbot-window" 
+    id="chatbot-window" 
+    role="dialog" 
+    aria-labelledby="chatbot-dialog-title" 
+    aria-hidden="true"
+  >
+    <!-- Window Header -->
+    <header class="chatbot-header">
+      <div class="chatbot-brand">
+        <div class="chatbot-avatar-badge">
+          <span>DR</span>
+          <span class="chatbot-status-dot" aria-hidden="true"></span>
+        </div>
+        <div class="chatbot-title-box">
+          <h3 class="chatbot-title" id="chatbot-dialog-title">Ask Divyansh AI</h3>
+          <span class="chatbot-subtitle">
+            <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Portfolio Assistant • Online
+          </span>
+        </div>
+      </div>
+
+      <div class="chatbot-header-actions">
+        <button type="button" class="chatbot-header-btn" id="chatbot-reset-btn" title="Restart conversation" aria-label="Restart conversation">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+        <button type="button" class="chatbot-header-btn" id="chatbot-close-btn" title="Close chat" aria-label="Close chat">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Messages Container -->
+    <div class="chatbot-messages" id="chatbot-messages" aria-live="polite">
+      <!-- Welcome Message Card -->
+      <div class="chatbot-welcome" id="chatbot-welcome-card">
+        <div class="chatbot-welcome-title">
+          <span>👋 Hi! I'm Divyansh's AI Assistant</span>
+        </div>
+        <p class="chatbot-welcome-desc">
+          Ask me anything about Divyansh's B.Tech in CSE (AI & ML) at JECRC University, his technical skills, verified GitHub projects, or contact details.
+        </p>
+
+        <div class="chatbot-suggestions-title">Suggested questions:</div>
+        <div class="chatbot-suggestions">
+          <button type="button" class="suggestion-chip" data-query="Tell me about your GitHub projects">
+            <span>📦 Tell me about your GitHub projects</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <button type="button" class="suggestion-chip" data-query="What are your top technical skills?">
+            <span>⚡ What are your top technical skills?</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <button type="button" class="suggestion-chip" data-query="Where do you study and what is your specialization?">
+            <span>🎓 Where do you study & specialization?</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <button type="button" class="suggestion-chip" data-query="How can I contact Divyansh?">
+            <span>✉️ How can I contact Divyansh?</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-indicator" id="chatbot-typing" aria-label="AI is typing">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <div class="chatbot-input-area">
+      <form class="chatbot-form" id="chatbot-form">
+        <input 
+          type="text" 
+          class="chatbot-input" 
+          id="chatbot-input" 
+          placeholder="Ask about projects, skills, contact..." 
+          aria-label="Ask Divyansh AI a question"
+          autocomplete="off"
+          maxlength="500"
+        />
+        <button type="submit" class="chatbot-send-btn" id="chatbot-send-btn" aria-label="Send message">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </form>
+      <div class="chatbot-disclaimer">
+        Grounded in Divyansh's verified portfolio & GitHub repositories.
+      </div>
+    </div>
+  </aside>
+
+  <!-- JavaScript Files -->
   <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
 </body>
 </html>

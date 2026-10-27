@@ -23,6 +23,8 @@ A dark Glassmorphism personal developer portfolio built for **Divyansh Raghuvans
 
 ```
 portfolio pe/
+├── api/
+│   └── chat.js               # Serverless AI handler (Vercel & local Vite middleware)
 ├── assets/
 │   └── favicon.svg           # Custom DR monogram vector favicon
 ├── css/
@@ -30,15 +32,54 @@ portfolio pe/
 │   ├── base.css              # Resets, ambient glows, container, typography
 │   ├── components.css        # DR avatar, buttons, badges, glass cards, toast
 │   ├── sections.css          # Navigation, hero, about, skills, projects, education, contact
+│   ├── chatbot.css           # Ask Divyansh AI floating chatbot styling
 │   ├── responsive.css        # Mobile (<768px), tablet (<1024px), reduced-motion
 │   └── style.css             # Master stylesheet aggregator
 ├── js/
-│   └── main.js               # Mobile drawer, active scroll spy, email copy toast, back to top
+│   ├── main.js               # Mobile drawer, active scroll spy, project search, toast
+│   └── chatbot.js            # Chatbot controller, markdown link renderer, API client
 ├── index.html                # Semantic HTML5 portfolio markup
+├── vite.config.js            # Vite configuration with /api/chat middleware
 ├── package.json              # Local development scripts (Vite)
+├── .env.example              # Environment variables template
 ├── .gitignore                # Git ignore rules
 └── README.md                 # Documentation & customization guide
 ```
+
+---
+
+## 🤖 Ask Divyansh AI — Portfolio Chatbot
+
+The website includes **Ask Divyansh AI**, a personal AI assistant embedded directly in the portfolio.
+
+### Features
+- **Conversational AI**: Powered by Google Gemini (or OpenAI) with grounded portfolio context.
+- **Accurate & Honest**: Answers questions about Divyansh's education at JECRC University, his technical skills, and his 6 verified GitHub repositories with clickable links. Never invents fake credentials or projects.
+- **Security First**: API keys are handled strictly server-side (via serverless API endpoint). No keys are ever exposed in client code.
+- **Dual Compatibility**: Runs seamlessly on local Vite dev server (`npm run dev`) through server middleware, and on Vercel via `api/chat.js`.
+- **Zero-Config Fallback**: Features a local grounded knowledge engine that answers all portfolio questions even before an external API key is set!
+
+### Configuring Your API Key
+
+#### 1. Local Development
+1. Create a `.env` file in the root directory:
+   ```bash
+   cp .env.example .env
+   ```
+2. Add your Google Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+   *(You can get a free Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)).*
+3. Restart the dev server (`npm run dev`).
+
+#### 2. Vercel Deployment
+1. Import your GitHub repository into Vercel.
+2. In your Vercel Project Settings, navigate to **Environment Variables**.
+3. Add a new variable:
+   - **Key**: `GEMINI_API_KEY`
+   - **Value**: `your_gemini_api_key_here`
+4. Deploy! The serverless function at `/api/chat` will automatically use your key securely.
 
 ---
 
