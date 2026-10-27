@@ -125,6 +125,20 @@
   }
 
   /* Projects */
+  .project-search-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .project-search-wrapper {
+    max-width: 100%;
+  }
+
+  .project-search-count {
+    text-align: right;
+  }
+
   .project-card-featured {
     padding: var(--space-6) var(--space-4);
     border-radius: var(--radius-lg);

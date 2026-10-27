@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initBackToTop();
   initEmailCopyToast();
+  initProjectSearch();
   initScrollAnimations();
   initDynamicYear();
 });
@@ -227,3 +228,111 @@ function initDynamicYear() {
     yearEl.textContent = new Date().getFullYear();
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. REAL-TIME PROJECT SEARCH FILTER
+   -------------------------------------------------------------------------- */
+function initProjectSearch() {
+  const searchInput = document.getElementById('project-search-input');
+  const clearBtn = document.getElementById('search-clear-btn');
+  const countEl = document.getElementById('project-search-count');
+  const noResultsEl = document.getElementById('no-projects-found');
+  const noResultsQueryText = document.getElementById('no-projects-query-text');
+  const resetBtn = document.getElementById('reset-search-btn');
+  const projectCards = document.querySelectorAll('#projects-grid .project-slot-card');
+
+  if (!searchInput || !projectCards.length) return;
+
+  const totalProjects = projectCards.length;
+
+  function filterProjects() {
+    const rawQuery = searchInput.value;
+    const query = rawQuery.trim().toLowerCase();
+
+    // Toggle clear button visibility
+    if (clearBtn) {
+      if (rawQuery.length > 0) {
+        clearBtn.classList.add('visible');
+      } else {
+        clearBtn.classList.remove('visible');
+      }
+    }
+
+    let matchCount = 0;
+
+    projectCards.forEach(card => {
+      const title = card.querySelector('.project-slot-title')?.textContent || '';
+      const desc = card.querySelector('.project-slot-desc')?.textContent || '';
+      const badge = card.querySelector('.badge')?.textContent || '';
+      const tags = Array.from(card.querySelectorAll('.tech-tag'))
+        .map(t => t.textContent)
+        .join(' ');
+      const footerMeta = card.querySelector('.project-slot-footer span')?.textContent || '';
+
+      const searchableText = `${title} ${desc} ${badge} ${tags} ${footerMeta}`.toLowerCase();
+
+      if (!query || searchableText.includes(query)) {
+        card.style.display = 'flex';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+        matchCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update count display
+    if (countEl) {
+      if (!query) {
+        countEl.textContent = `Showing all ${totalProjects} projects`;
+      } else {
+        countEl.textContent = `Showing ${matchCount} of ${totalProjects} ${matchCount === 1 ? 'project' : 'projects'}`;
+      }
+    }
+
+    // Toggle empty state
+    if (noResultsEl) {
+      if (matchCount === 0) {
+        noResultsEl.classList.add('show');
+        if (noResultsQueryText) {
+          noResultsQueryText.textContent = `No project tiles match "${rawQuery.trim()}". Try searching for "Python", "Algorithms", or "Quiz".`;
+        }
+      } else {
+        noResultsEl.classList.remove('show');
+      }
+    }
+  }
+
+  // Real-time instant filtering as user types
+  searchInput.addEventListener('input', filterProjects);
+
+  // Clear button click
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterProjects();
+      searchInput.focus();
+    });
+  }
+
+  // Reset button in empty state
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterProjects();
+      searchInput.focus();
+    });
+  }
+
+  // Clear on Escape key
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      filterProjects();
+    }
+  });
+
+  // Initial count setup
+  filterProjects();
+}
+
