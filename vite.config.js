@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, env);
 
   return {
+    base: './',
     server: {
       port: 5173,
       host: true
