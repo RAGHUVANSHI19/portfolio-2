@@ -62,18 +62,13 @@ Simply double-click `index.html` or open it directly in any modern browser (Chro
 
 ---
 
-## ✏️ Personalization Guide
+## ✏️ Personal Profile Details Configured
 
-All personal placeholders are clearly marked with comments in `index.html`:
-
-1. **Email Address**:
-   - In `index.html`, locate `id="contact-email-text"` and update `data-email` and the display text with your real email.
-   - Also update the `href="mailto:..."` link in the contact CTA.
-2. **LinkedIn Profile**:
-   - In `index.html`, locate the LinkedIn card link `https://linkedin.com/in/your-profile-here` and replace it with your personal LinkedIn URL.
-3. **Showcasing Projects**:
-   - The `#projects` section is configured with clean glass cards and a placeholder slot.
-   - Whenever you want to showcase a new project, you can tell your AI assistant or add a new `.project-slot-card` with your project title, description, technology tags, and GitHub repository link.
+- **Name**: Divyansh Raghuvanshi
+- **Email**: `raghuvanshidivyansh35@gmail.com`
+- **LinkedIn**: [divyansh-raghuvanshi](https://www.linkedin.com/in/divyansh-raghuvanshi-18483a378)
+- **GitHub**: [@RAGHUVANSHI19](https://github.com/RAGHUVANSHI19)
+- **University**: JECRC University, Jaipur (B.Tech CSE - AI & ML)
 
 ---
 
